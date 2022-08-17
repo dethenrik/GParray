@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GParray", "GParray\GParray.csproj", "{AC54CE45-2440-4518-958C-074DC673462B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC54CE45-2440-4518-958C-074DC673462B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC54CE45-2440-4518-958C-074DC673462B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC54CE45-2440-4518-958C-074DC673462B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC54CE45-2440-4518-958C-074DC673462B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BA53F0E-171A-4C3C-BA9A-F5F811C05E6E}
+	EndGlobalSection
+EndGlobal
