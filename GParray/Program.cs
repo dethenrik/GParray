@@ -12,7 +12,11 @@
         static void Main(string[] args)
         {
             AddToArray();
-            Menu();
+            while (true)
+            {
+                Menu();
+            }
+            
         }
 
 
@@ -33,7 +37,8 @@
 
         static void Menu()
         {
-            Console.WriteLine("1. vis arrangementer \n2. Køb billeter \n ");
+            Console.WriteLine("\n1. Vis arrangementer \n2. Køb Billet\n3. Vis alle billetter\n\nIndtast valg");
+
             switch (Console.ReadKey(true).Key)
             {
                 case ConsoleKey.D1:
@@ -43,11 +48,12 @@
                 case ConsoleKey.D2:
                 case ConsoleKey.NumPad2:
                     Arrangements();
-                    BuyTicket();
+                    int t = BuyTicket();
+                    Console.WriteLine("billet nummer: " + t);
                     break;
                 case ConsoleKey.D3:
                 case ConsoleKey.NumPad3:
-                    BackSpace();
+                    ShowTicketsBought();
                     break;
             }
         }
@@ -60,32 +66,10 @@
             foreach (string arr in arrangements)
             {
                 Arrangements();
+                int i = Array.IndexOf(arrangements, arr);
+                Console.WriteLine(i + " " + arr);
 
-                switch (Console.ReadKey().Key)
-                {
-                    case ConsoleKey.Backspace:
-                        if (true)
-                        {
-                            Console.Clear();
-                            Console.WriteLine("1. vis arrangementer \n2. Køb billeter \n ");
-                            
-                        }
-                        break;
-                    case ConsoleKey.D1:
-                    case ConsoleKey.NumPad1:
-                        ShowALLArrangements();
-                        break;
-                    case ConsoleKey.D2:
-                    case ConsoleKey.NumPad2:
-                        Arrangements();
-                        BuyTicket();
-                        break;
-                    case ConsoleKey.D3:
-                    case ConsoleKey.NumPad3:
-                        BackSpace();
-                        break;
 
-                }
             }
         }
 
@@ -116,31 +100,41 @@
 
 
         //_____________________________________________\\
-        static void BuyTicket()
+        static int BuyTicket()
         {
-            Console.WriteLine("indtast");
+            Console.WriteLine("indtast nummer på arrangement du ønsker at købe billet til");
             string input = Console.ReadLine();
             int.TryParse(input, out int arrangementNumber);
+            Console.WriteLine("indtast det ønskede antal billetter");
             input = Console.ReadLine();
             int.TryParse(input, out int amountOfTickets);
-            int freeSpot = GetNextFreeUserSpotInTicketsArray();
-            tickets[freeSpot, 1] = amountOfTickets;
-            tickets[freeSpot, 2] = arrangementNumber;
+
+            int freeSpot = GetNextFreeSpotInTicketArray();
+            tickets[freeSpot, 0] = amountOfTickets;
+            tickets[freeSpot, 1] = arrangementNumber;
             return freeSpot;
         }
+
+        static int GetNextFreeSpotInTicketArray()
+        {
+            for (int i = 0; i < tickets.Length; i++)
+            {
+                if (tickets[i, 0] == 0) { return i; }
+            }
+            return 0;
+        }
+
+
         static void ShowTicketsBought()
         {
-            for (int i = 0; i < length; i++)
+            Console.WriteLine("Antal\tArrangement\tLokation");
+            for (int i = 0; i < tickets.Length; i++)
             {
                 if (tickets[i, 0] == 0) return;
-                Console.WriteLine(tickets[i, 0] + tickets[i + 1]);
-                
+                string arr = arrangements[tickets[i, 1]];
+                string[] splitArray = arr.Split("- ");
+                Console.WriteLine(tickets[i, 0] + "\t" + splitArray[0] + "\t" + splitArray[1]);
             }
-        }
-        static void BackSpace()
-        {
-
-            Menu();
         }
     }
 }
